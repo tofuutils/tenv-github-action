@@ -1,0 +1,35 @@
+name: "tofuutils/tenv - Setup OpenTofu/Terraform/Terragrunt/Atmos in one action"
+description: "Sets up OpenTofu/Terraform/Terragrunt/Atmos CLI in your GitHub Actions workflow."
+author: "kvendingoldo"
+
+branding:
+  icon: "play-circle"
+  color: "yellow"
+
+inputs:
+  tool_name:
+    description: ""
+    required: true
+  tool_version:
+    description: ""
+    required: false
+    default: "latest"
+  github_token:
+    description: "API token for GitHub to increase the rate limit."
+    default: ""
+    required: false
+
+outputs:
+  stdout:
+    description: "The STDOUT stream of the call to the `tofu` binary."
+    value: ""
+  stderr:
+    description: "The STDERR stream of the call to the `tofu` binary."
+    value: "Wrapper was not activated"
+  exitcode:
+    description: "The exit code of the call to the `tofu` binary."
+    value: "126"
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
