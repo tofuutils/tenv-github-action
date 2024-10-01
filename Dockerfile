@@ -18,4 +18,4 @@ LABEL maintainer="TofuUtils Core Team"
 
 COPY src/tenv-action.sh /tenv-action.sh
 RUN chmod +x /tenv-action.sh
-ENTRYPOINT ["/tenv-action.sh"]
+ENTRYPOINT ["/bin/sh", "/tenv-action.sh"]
