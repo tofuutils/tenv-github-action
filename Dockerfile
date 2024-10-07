@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM tofuutils/tenv:3.2.3
+FROM tofuutils/tenv:3.2.4
 LABEL maintainer="TofuUtils Core Team"
 
 COPY src/tenv-action.sh /tenv-action.sh
