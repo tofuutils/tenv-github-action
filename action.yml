@@ -13,7 +13,6 @@ inputs:
   tool_version:
     description: ""
     required: false
-    default: "latest"
   github_token:
     description: "API token for GitHub to increase the rate limit."
     default: ""
@@ -31,5 +30,17 @@ outputs:
     value: "126"
 
 runs:
-  using: "docker"
-  image: "Dockerfile"
+  using: "composite"
+  steps:
+    - uses: OJFord/setup-tenv@issues/16
+      with:
+        github_token: "${{inputs.github_token}}"
+        tenv_wrapper: "false"
+
+    - run: "tenv ${{inputs.tool_name}} install ${{inputs.tool_version}}"
+      if: ${{inputs.tool_version != ''}}
+      shell: "bash"
+
+    - run: "tenv ${{inputs.tool_name}} detect --install"
+      if: ${{inputs.tool_version == ''}}
+      shell: "bash"
